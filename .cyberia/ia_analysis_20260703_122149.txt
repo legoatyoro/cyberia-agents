@@ -1,0 +1,44 @@
+=== ANALYSE IA 20260703_122149 ===
+
+
+RAPPORT D'ENRICHISSEMENT CYBERIA — 2026-07-03T12:21:37.616673
+
+NOUVEAUX PAYLOADS ELITE (0) :
+
+NOUVEAUX ANTIDOTES (10) :
+- [ssrf_rce_chain] efficacité 95.0% : /\?q=%2F%3Fq%3D%2525%25253252f%253F%2525252551%25253d%252525
+- [cmdi] efficacité 95.0% : /\?q=%2F%3Fcmd%3Dtest%250d%250aid
+- [ssrf] efficacité 95.0% : /\?q=%255Bｏbjｅct%2520Objｅct%255D
+- [ssrf] efficacité 95.0% : /\?q=aHR0cDovLzEyNy4wLjAuMS8%3D
+- [ssrf] efficacité 95.0% : /\?q=%5C147%5C157%5C160%5C150%5C145%5C162%5C72%5C57%5C57%5C6
+- [ssrf] efficacité 95.0% : /\?q=%5C150%5C164%5C164%5C160%5C72%5C57%5C57%5C61%5C62%5C67%
+- [ssrf] efficacité 95.0% : /\?q=%5C144%5C151%5C143%5C164%5C72%5C57%5C57%5C61%5C62%5C67%
+- [ssrf] efficacité 95.0% : /\?q=%26%23103%3B%26%23111%3B%26%23112%3B%26%23104%3B%26%231
+- [xxe_ssrf_chain] efficacité 95.0% : /\?q=%2F%3Fq%3D%255Cu0027%255Cu0020%255Cu0020%255Cu0041%255C
+- [ssti] efficacité 95.0% : /\?q=%3C%25%3D%207\*7%20%25%3E
+
+=== RÉPONSE IA ===
+
+### 1. Résumé des nouvelles techniques détectées  
+- **SSRF avancé** : Plusieurs variantes d'encodage (octaux, Unicode, Base64, entités HTML) pour contourner les filtres.  
+- **Chaînes RCE/SSRF** : Combinaison d'encodages multiples (ex: `%2525...`) pour exploiter des parsers imbriqués.  
+- **CMDI** : Injection de commande via encodage de retours chariot (`%0d%0a`).  
+- **SSTI** : Template injection basique (`<%= 7*7 %>`).  
+
+### 2. Patterns émergents  
+- **Encodage en cascade** : Utilisation répétée de double/triple encodage URL.  
+- **Notations alternatives** : Octaux, Unicode, entités HTML pour masquer les payloads.  
+- **Chaînage de vulnérabilités** : Combinaison XXE/SSRF ou RCE/SSRF dans un seul payload.  
+
+### 3. Recommandations pour les WAF  
+- **Normalisation stricte** : Décoder/réencoder les requêtes en profondeur avant inspection.  
+- **Détection des chaînes d'encodage** : Règles pour repérer les séquences `%25%32%66` (double-encodage).  
+- **Blocage des schémmas obliques** : Intercepter les notations octales/Unicode pour `http://` ou `//`.  
+- **Validation contextuelle** : Analyser les paramètres en fonction de leur usage (ex: refuser les octaux dans les URLs).  
+
+### 4. Catégories à renforcer  
+- **Chaînage de vulnérabilités** : Plus de génération pour XXE/SSRF et RCE/SSRF.  
+- **Encodages exotiques** : Payloads utilisant des encodages rares (ex: UTF-7, compression).  
+- **SSTI complexes** : Injections multi-contextes (Twig, Jinja2, etc.).  
+
+*Priorité : SSRF et chaînages, suivis par les encodages obscurs.*

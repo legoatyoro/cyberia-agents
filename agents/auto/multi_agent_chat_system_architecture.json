@@ -1,0 +1,137 @@
+{
+  "narrative": "Le système repose sur une architecture orientée événements où chaque agent est un micro-service autonome communiquant via un bus d'événements asynchrone (implémenté avec `asyncio` et un pattern publish/subscribe). L'agent central `MESSAGE_BROKER` agit comme orchestrateur : il reçoit les messages entrants, les distribue aux agents destinataires, et gère les files d'attente. Les agents `SPEECH_PARSER` et `RESPONSE_GENERATOR` sont spécialisés respectivement dans l'analyse sémantique des messages et la production de réponses cohérentes. Cette séparation garantit le principe de responsabilité unique (SRP) et permet une évolution indépendante de chaque composant.\n\nLe flux de données suit un pipeline strict : un message texte entre dans `SPEECH_PARSER` qui extrait l'intention et les entités, puis publie un événement `INTENT_PARSED`. `MESSAGE_BROKER` écoute cet événement, détermine l'agent destinataire via une table de routage, et publie `MESSAGE_FORWARDED`. `RESPONSE_GENERATOR` reçoit l'événement, construit une réponse contextuelle, et publie `RESPONSE_READY`. Enfin, `MESSAGE_BROKER` renvoie la réponse à l'agent émetteur initial via `MESSAGE_DELIVERED`. Chaque agent fonctionne en boucle asynchrone, avec des timeouts et des mécanismes de retry pour garantir la robustesse.\n\nTechniquement, j'utilise `pydantic` pour la validation des données échangées (événements typés), `asyncio` pour la concurrence, et `redis` comme backend optionnel pour la persistance des files d'attente en production. En développement, un bus en mémoire suffit. Les agents sont des classes Python héritant d'une base `BaseAgent` qui gère le cycle de vie (subscribe, handle, publish). Les dépendances sont minimales : `pydantic`, `asyncio`, et éventuellement `redis` pour le mode distribué.",
+  "schema": {
+    "project_name": "multi_agent_chat_system",
+    "description": "Système multi-agents pour la communication inter-agents via un bus d'événements asynchrone",
+    "agents": [
+      {
+        "name": "MESSAGE_BROKER",
+        "file": "agents/message_broker.py",
+        "class": "MessageBrokerAgent",
+        "responsibilities": [
+          "Orchestrer la distribution des messages entre agents",
+          "Maintenir la table de routage des agents",
+          "Gérer les files d'attente et les timeouts"
+        ],
+        "inputs": [
+          "message_texte",
+          "intent_parsed_event",
+          "response_ready_event"
+        ],
+        "outputs": [
+          "message_forwarded_event",
+          "message_delivered_event"
+        ],
+        "dependencies": [
+          "pydantic",
+          "asyncio"
+        ],
+        "calls_agents": [
+          "SPEECH_PARSER",
+          "RESPONSE_GENERATOR"
+        ],
+        "publishes_events": [
+          "MESSAGE_FORWARDED",
+          "MESSAGE_DELIVERED"
+        ],
+        "subscribes_events": [
+          "INTENT_PARSED",
+          "RESPONSE_READY"
+        ]
+      },
+      {
+        "name": "SPEECH_PARSER",
+        "file": "agents/speech_parser.py",
+        "class": "SpeechParserAgent",
+        "responsibilities": [
+          "Analyser le texte entrant pour extraire l'intention",
+          "Extraire les entités nommées et le contexte",
+          "Valider la structure du message"
+        ],
+        "inputs": [
+          "message_texte"
+        ],
+        "outputs": [
+          "intent_parsed_event"
+        ],
+        "dependencies": [
+          "pydantic",
+          "asyncio"
+        ],
+        "calls_agents": [],
+        "publishes_events": [
+          "INTENT_PARSED"
+        ],
+        "subscribes_events": [
+          "MESSAGE_FORWARDED"
+        ]
+      },
+      {
+        "name": "RESPONSE_GENERATOR",
+        "file": "agents/response_generator.py",
+        "class": "ResponseGeneratorAgent",
+        "responsibilities": [
+          "Générer une réponse contextuelle à partir de l'intention",
+          "Formater la réponse selon le protocole",
+          "Gérer les templates de réponse"
+        ],
+        "inputs": [
+          "intent_parsed_event"
+        ],
+        "outputs": [
+          "response_ready_event"
+        ],
+        "dependencies": [
+          "pydantic",
+          "asyncio"
+        ],
+        "calls_agents": [],
+        "publishes_events": [
+          "RESPONSE_READY"
+        ],
+        "subscribes_events": [
+          "MESSAGE_FORWARDED"
+        ]
+      },
+      {
+        "name": "LOGGER_MONITOR",
+        "file": "agents/logger_monitor.py",
+        "class": "LoggerMonitorAgent",
+        "responsibilities": [
+          "Journaliser tous les événements du bus",
+          "Surveiller les performances des agents",
+          "Détecter les anomalies et les timeouts"
+        ],
+        "inputs": [
+          "tous_les_events"
+        ],
+        "outputs": [
+          "logs",
+          "alertes"
+        ],
+        "dependencies": [
+          "pydantic",
+          "asyncio",
+          "logging"
+        ],
+        "calls_agents": [],
+        "publishes_events": [
+          "ALERT_TRIGGERED"
+        ],
+        "subscribes_events": [
+          "INTENT_PARSED",
+          "MESSAGE_FORWARDED",
+          "RESPONSE_READY",
+          "MESSAGE_DELIVERED"
+        ]
+      }
+    ],
+    "pipeline": [
+      "SPEECH_PARSER",
+      "MESSAGE_BROKER",
+      "RESPONSE_GENERATOR",
+      "MESSAGE_BROKER"
+    ],
+    "estimated_files": 7
+  }
+}

@@ -1,0 +1,1481 @@
+{
+  "generated_at": "2026-07-03T11:34:29.441752",
+  "total_rules": 295,
+  "rules": [
+    {
+      "category": "ssrf_rce_chain",
+      "pattern": "/\\?q=%2F%3Fq%3D%2525%25253252f%253F%2525252551%25253d%2525252%252539%2525%252525%",
+      "score": 95.0
+    },
+    {
+      "category": "cmdi",
+      "pattern": "/\\?q=%2F%3Fcmd%3Dtest%250d%250aid",
+      "score": 95.0
+    },
+    {
+      "category": "ssrf",
+      "pattern": "/\\?q=%255B\uff4fbj\uff45ct%2520Obj\uff45ct%255D",
+      "score": 95.0
+    },
+    {
+      "category": "ssrf",
+      "pattern": "/\\?q=aHR0cDovLzEyNy4wLjAuMS8%3D",
+      "score": 95.0
+    },
+    {
+      "category": "ssrf",
+      "pattern": "/\\?q=%5C147%5C157%5C160%5C150%5C145%5C162%5C72%5C57%5C57%5C61%5C62%5C67%5C56%5C60",
+      "score": 95.0
+    },
+    {
+      "category": "ssrf",
+      "pattern": "/\\?q=%5C150%5C164%5C164%5C160%5C72%5C57%5C57%5C61%5C62%5C67%5C56%5C60%5C56%5C60%5",
+      "score": 95.0
+    },
+    {
+      "category": "ssrf",
+      "pattern": "/\\?q=%5C144%5C151%5C143%5C164%5C72%5C57%5C57%5C61%5C62%5C67%5C56%5C60%5C56%5C60%5",
+      "score": 95.0
+    },
+    {
+      "category": "ssrf",
+      "pattern": "/\\?q=%26%23103%3B%26%23111%3B%26%23112%3B%26%23104%3B%26%23101%3B%26%23114%3B%26%",
+      "score": 95.0
+    },
+    {
+      "category": "xxe_ssrf_chain",
+      "pattern": "/\\?q=%2F%3Fq%3D%255Cu0027%255Cu0020%255Cu0020%255Cu0041%255Cu004e%255Cu0044%255Cu",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "/\\?q=%3C%25%3D%207\\*7%20%25%3E",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "/\\?q=%5C47%5C51%5C40%5C53%5C137%5C137%5C151%5C155%5C160%5C157%5C162%5C164%5C137%5",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "/\\?q=%7B%7B%7D%7D",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "/\\?q=%2524%257B%257D",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "/\\?q=%24%7B7\\*7%7D",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "/\\?q=%3C%25%3D%20%5Bobject%20Object%5D%20%25%3E",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "/\\?q=%23%7B%5Bobject%20Object%5D%7D",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "/\\?q=%5Cu0027%5Cu0020%5Cu0055%5Cu004e%5Cu0049%5Cu004f%5Cu004e%5Cu0020%5Cu0053%5Cu",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "/\\?q=%5C47%5C40%5C125%5C116%5C111%5C117%5C116%5C40%5C123%5C105%5C114%5C105%5C103%",
+      "score": 95.0
+    },
+    {
+      "category": "rce",
+      "pattern": "/\\?q=%255Bobject%2520Object%255D",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "/\\?q=1'%252520OR%252520'1'%25253D'1",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "/\\?q=%26%2339%3B%26%2332%3B%26%2385%3B%26%2378%3B%26%2373%3B%26%2379%3B%26%2378%3",
+      "score": 95.0
+    },
+    {
+      "category": "rce",
+      "pattern": "/\\?q=%25255B%6fbjec%74%252%30Obje%63t%25%35D",
+      "score": 95.0
+    },
+    {
+      "category": "nosqli",
+      "pattern": "/\\?q=%2F%3Fid%5B%24in%5D%3D%5B1%2C2%2C3%2C4%2C5%5D",
+      "score": 95.0
+    },
+    {
+      "category": "business_logic",
+      "pattern": "/\\?q=%2F%3Fquantity%3D99999999",
+      "score": 95.0
+    },
+    {
+      "category": "graphql",
+      "pattern": "/\\?q=%7Buser\\(id%3A%221%20OR%201%3D1%22\\)%7Bid%2Cemail%7D%7D",
+      "score": 95.0
+    },
+    {
+      "category": "xss",
+      "pattern": "/\\?q=\"><\uff49mg\\ src=x\\ \uff4fn\uff45rr\uff4fr=\uff41l\uff45rt\\(1\\)>",
+      "score": 95.0
+    },
+    {
+      "category": "xss",
+      "pattern": "/\\?q=%3Cscr\uff49pt%3E\uff41l\uff45rt%281%29%3C%2Fscr\uff49pt%3E",
+      "score": 95.0
+    },
+    {
+      "category": "ssrf",
+      "pattern": "/\\?q=%26%23100%3B%26%23105%3B%26%2399%3B%26%23116%3B%26%2358%3B%26%2347%3B%26%234",
+      "score": 95.0
+    },
+    {
+      "category": "ssrf",
+      "pattern": "/\\?q=%5Cu0067%5Cu006f%5Cu0070%5Cu0068%5Cu0065%5Cu0072%5Cu003a%5Cu002f%5Cu002f%5Cu",
+      "score": 95.0
+    },
+    {
+      "category": "ssrf",
+      "pattern": "/\\?q=%26%23104%3B%26%23116%3B%26%23116%3B%26%23112%3B%26%2358%3B%26%2347%3B%26%23",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "/\\?tpl=\\{\\{7\\*7\\}\\}",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "\\{\\{lipsum\\.__globals__\\.os\\.popen\\(\"id\"\\)\\.read\\(\\)\\}\\}",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "/\\?tpl=\\$\\{7\\*7\\}",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "/\\?q=JykgK19faW1wb3J0X18lPg%3D%3D",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "\\{\\{request\\.application\\.__globals__\\.__builtins__\\}\\}",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "'\\ AND\\ RANDOMBLOB\\(500000000\\)\\-\\-\\ \\-",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "'\\ HAVING\\ 1=1\\-\\-\\ \\-",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "/\\?id=SLEEP\\(5\\)\\-\\-",
+      "score": 95.0
+    },
+    {
+      "category": "rce",
+      "pattern": "/\\?\\?\\?/\\?\\?t\\ /\\?\\?\\?/p\\?\\?s\\?\\?",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "'\\ ORDER\\ BY\\ 1\\-\\-\\ \\-",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "'\\ AND\\ 1\\ LIKE\\ 1\\-\\-\\ \\-",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "'\\ GROUP\\ BY\\ columnnames\\ HAVING\\ 1=1\\-\\-\\ \\-",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "'/\\*\\*/oR/\\*\\*/1=1\\-\\-\\ \\-",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "/\\?id=1;\\ DROP\\ TABLE\\ users\\-\\-",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "'\\-IF\\(1=1,1,0\\)\\-\\-\\ \\-",
+      "score": 95.0
+    },
+    {
+      "category": "ssrf",
+      "pattern": "/\\?q=%2F\\*!50000%5Bobject%20Object%5D\\*%2F",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "/\\?id=1\\ OR\\ 1=1\\-\\-",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "/\\?id=1\\ UNION\\ SELECT\\ null,null\\-\\-",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "/\\?q='%20OR%201%3D1%20LIMIT%201\\-\\-",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "<%=\\ 7\\*7\\ %>",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "\\$\\{7\\*7\\}",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "\\#\\{7\\*7\\}",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "'=\\(''\\|\\|''\\)\\-\\-\\ \\-",
+      "score": 95.0
+    },
+    {
+      "category": "lfi",
+      "pattern": "/\\?q=%2Fvar%2Flog%2Fapache2%2Faccess\\.log",
+      "score": 95.0
+    },
+    {
+      "category": "lfi",
+      "pattern": "/\\?file=/proc/self/environ",
+      "score": 95.0
+    },
+    {
+      "category": "xss",
+      "pattern": "</title><script>alert\\(1\\)</script>",
+      "score": 95.0
+    },
+    {
+      "category": "xss",
+      "pattern": "'\\-alert\\(1\\)\\-'",
+      "score": 95.0
+    },
+    {
+      "category": "xss",
+      "pattern": "javascript:alert\\(1\\)//",
+      "score": 95.0
+    },
+    {
+      "category": "xss",
+      "pattern": "\\{\\{constructor\\.constructor\\(\"alert\\(1\\)\"\\)\\(\\)\\}\\}",
+      "score": 95.0
+    },
+    {
+      "category": "xss",
+      "pattern": "/\\?q=%25253Cscript%25253Ealert\\(1\\)%25253C%25252Fscript%25253E",
+      "score": 95.0
+    },
+    {
+      "category": "access",
+      "pattern": "/\uff41dm\uff49n",
+      "score": 95.0
+    },
+    {
+      "category": "exposure",
+      "pattern": "/\\.git/HEAD",
+      "score": 95.0
+    },
+    {
+      "category": "exposure",
+      "pattern": "/backup\\.sql",
+      "score": 95.0
+    },
+    {
+      "category": "exposure",
+      "pattern": "/api/swagger\\.json",
+      "score": 95.0
+    },
+    {
+      "category": "websocket",
+      "pattern": "/\\?q=PINGINJECT",
+      "score": 95.0
+    },
+    {
+      "category": "ldap",
+      "pattern": "/\\?q=\\*\\)\\(uid%3D\\*\\)\\)\\(%7C\\(uid%3D\\*",
+      "score": 95.0
+    },
+    {
+      "category": "sentinel_live",
+      "pattern": "/\\?q=%3Cscr\uff49pt%3Ec\uff4fnf\uff49rm\\(d\uff4fcum\uff45nt\\.d\uff4fm\uff41\uff49n\\)%3C%2Fscr\uff49pt%3E",
+      "score": 95.0
+    },
+    {
+      "category": "ssrf",
+      "pattern": "/\\?q=%25255Bobject%252520Object%25255D",
+      "score": 95.0
+    },
+    {
+      "category": "ssrf",
+      "pattern": "/\\?Q=%255BobJecT%2520ObjEct%255d",
+      "score": 95.0
+    },
+    {
+      "category": "exposure",
+      "pattern": "/\\.env",
+      "score": 95.0
+    },
+    {
+      "category": "jsonp",
+      "pattern": "/\\?search=test\\&callback=alert",
+      "score": 95.0
+    },
+    {
+      "category": "cors",
+      "pattern": "/\\?q=Origin%3A%20https%3A%2F%2Ftarget\\.com\\.evil\\.com",
+      "score": 95.0
+    },
+    {
+      "category": "hpp",
+      "pattern": "/\\?q=%3Faction%3Dview%26action%3Ddelete",
+      "score": 95.0
+    },
+    {
+      "category": "ldap",
+      "pattern": "/\\?q=\\*\\)\\(cn%3D\\*\\)\\)\\(%7C\\(cn%3D\\*",
+      "score": 95.0
+    },
+    {
+      "category": "rce",
+      "pattern": "/\\?q=%2F%3Fq%3D%2524%257B%2524%257B%253A%253A\\-j%257D%2524%257B%253A%253A\\-n%257D%2",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "/\\?q=%7B%7B%5Bobject%20Object%5D%7D%7D",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "/\\?q=%24%7B%5Bobject%20Object%5D%7D",
+      "score": 95.0
+    },
+    {
+      "category": "lfi",
+      "pattern": "/\\?f\uff49l\uff45=/pr\uff4fc/s\uff45lf/\uff45nv\uff49r\uff4fn",
+      "score": 95.0
+    },
+    {
+      "category": "rce",
+      "pattern": "/\\?cmd=;\uff49d",
+      "score": 95.0
+    },
+    {
+      "category": "rce",
+      "pattern": "/\\?cmd=%3Bid",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "/\\?q=JTI1NUJvYmplY3QlMjUyME9\uff49\uff41mVjdCUyNTVE",
+      "score": 95.0
+    },
+    {
+      "category": "lfi",
+      "pattern": "/\\?q=%2Fproc%2Fself%2Fenviron%2500",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "/\\?q=%23%7B7\\*7%7D",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "/\\?q=%257b%257b%257d%257d",
+      "score": 95.0
+    },
+    {
+      "category": "access",
+      "pattern": "/phpmy\uff41dm\uff49n",
+      "score": 95.0
+    },
+    {
+      "category": "cors",
+      "pattern": "/\\?q=Origin%3A%20null",
+      "score": 95.0
+    },
+    {
+      "category": "weak_crypto",
+      "pattern": "/\\?q=%2F%3Falgo%3Dmd5%26data%3Dtest",
+      "score": 95.0
+    },
+    {
+      "category": "api_key_leak",
+      "pattern": "/\\?q=%2Fapi%2Fcredentials",
+      "score": 95.0
+    },
+    {
+      "category": "jwt",
+      "pattern": "/\\?q=%7B%22alg%22%3A%22none%22%2C%22typ%22%3A%22JWT%22%7D",
+      "score": 95.0
+    },
+    {
+      "category": "jwt",
+      "pattern": "/\\?q=%7B%22alg%22%3A%22HS256%22%2C%22typ%22%3A%22JWT%22%7D",
+      "score": 95.0
+    },
+    {
+      "category": "open_redirect",
+      "pattern": "/\\?q=%2F%2509%2Fevil\\.com",
+      "score": 95.0
+    },
+    {
+      "category": "open_redirect",
+      "pattern": "/\\?q=%2F%5Cevil\\.com",
+      "score": 95.0
+    },
+    {
+      "category": "rce",
+      "pattern": "/\\?cmd=\\|c\uff41t\\ /\uff45tc/p\uff41sswd",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "/\\?id=1\\ OR\\ 1=1\\#",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "';SELECT\\ PG_SLEEP\\(1\\)\\-\\-\\ \\-",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "/\\?id=SLEEP\\(5\\)\\#",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "'\\ AND\\ 1=\\(SELECT\\ 1\\ FROM\\ PG_SLEEP\\(1\\)\\)\\-\\-\\ \\-",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "/\\?\uff49d=SLEEP\\(5\\)\\-\\-",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "'\\|\\|\\(SELECT\\ ''\\)\\-\\-\\ \\-",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "/\\?q=admin'\\)%20OR%20\\('1'%3D'1",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "'\\ WHERE\\ 1=1\\ AND\\ 1=CONVERT\\(int,@@version\\)\\-\\-\\ \\-",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "'\\ AND\\ EXISTS\\(SELECT\\ 1\\)\\-\\-\\ \\-",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "';DECLARE\\ @x\\ varchar\\(99\\);SET\\ @x='test';\\-\\-\\ \\-",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "'%0aOR%0a1=1\\-\\-\\ \\-",
+      "score": 95.0
+    },
+    {
+      "category": "cors",
+      "pattern": "/\\?q=Origin%3A%20https%3A%2F%2Ftarget\\.com%2500\\.evil\\.com",
+      "score": 95.0
+    },
+    {
+      "category": "rce",
+      "pattern": "/\\?cmd=;id",
+      "score": 95.0
+    },
+    {
+      "category": "jwt",
+      "pattern": "/\\?q=%7B%22kid%22%3A%22\\.\\.%2F\\.\\.%2F\\.\\.%2F\\.\\.%2F\\.\\.%2F\\.\\.%2Fdev%2Fnull%22%2C%22alg%22%3A",
+      "score": 95.0
+    },
+    {
+      "category": "graphql",
+      "pattern": "/\\?q=query%7Busers\\(limit%3A99999\\)%7Bid%2Cemail%2Cpassword%7D%7D",
+      "score": 95.0
+    },
+    {
+      "category": "jwt",
+      "pattern": "/\\?q=eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0\\.eyJzdWIiOiIxMjM0NTY3ODkwIiwicm9sZSI6ImFk",
+      "score": 95.0
+    },
+    {
+      "category": "lfi",
+      "pattern": "\\.\\.\\.\\.//\\.\\.\\.\\.//\\.\\.\\.\\.//windows/win\\.ini",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "\\{\\{config\\.__class__\\.__init__\\.__globals__\\}\\}",
+      "score": 95.0
+    },
+    {
+      "category": "crlf",
+      "pattern": "/\\?q=%250d%250aSet\\-Cookie%3Ahacked%3Dtrue",
+      "score": 95.0
+    },
+    {
+      "category": "lfi",
+      "pattern": "/\\?f\uff49l\uff45=\\.\\./\\.\\./\uff45tc/p\uff41sswd",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "/\\?q=1%252520OR%2525201%25253D1\\-\\-",
+      "score": 95.0
+    },
+    {
+      "category": "xss",
+      "pattern": "\"><img\\ src=x\\ onerror=alert`1`>",
+      "score": 95.0
+    },
+    {
+      "category": "cache_poisoning",
+      "pattern": "/\\?q=X\\-Forwarded\\-Port%3A%201337",
+      "score": 95.0
+    },
+    {
+      "category": "xss",
+      "pattern": "<svg/onload=alert\\(1\\)>",
+      "score": 95.0
+    },
+    {
+      "category": "rce",
+      "pattern": "\\{cat,/etc/passwd\\}",
+      "score": 95.0
+    },
+    {
+      "category": "xss",
+      "pattern": "/\\?q='\\-alert\\(1\\)\\-'",
+      "score": 95.0
+    },
+    {
+      "category": "xss",
+      "pattern": "/\\?q=<svg/\uff4fnl\uff4f\uff41d=\uff41l\uff45rt\\(1\\)>",
+      "score": 95.0
+    },
+    {
+      "category": "jsonp",
+      "pattern": "/\\?s\uff45\uff41rch=t\uff45st\\&c\uff41llb\uff41ck=\uff41l\uff45rt",
+      "score": 95.0
+    },
+    {
+      "category": "ldap",
+      "pattern": "/\\?q=\\*\\)\\(%26\\(objectClass%3D\\*\\)\\)",
+      "score": 95.0
+    },
+    {
+      "category": "exposure",
+      "pattern": "/actuator/env",
+      "score": 95.0
+    },
+    {
+      "category": "access",
+      "pattern": "/phpmyadmin",
+      "score": 95.0
+    },
+    {
+      "category": "exposure",
+      "pattern": "/server\\-status",
+      "score": 95.0
+    },
+    {
+      "category": "graphql",
+      "pattern": "/\\?q=%7B__type\\(name%3A%22User%22\\)%7Bname%2Cfields%7Bname%2Ctype%7Bname%7D%7D%7D%7",
+      "score": 95.0
+    },
+    {
+      "category": "hpp",
+      "pattern": "/\\?q=%3Fredirect%3Dsafe\\.com%26redirect%3Devil\\.com",
+      "score": 95.0
+    },
+    {
+      "category": "cors",
+      "pattern": "/\\?q=Origin%3A%20https%3A%2F%2Ftargetxcom\\.evil\\.com",
+      "score": 95.0
+    },
+    {
+      "category": "exposure",
+      "pattern": "/server\\-info",
+      "score": 95.0
+    },
+    {
+      "category": "exposure",
+      "pattern": "/actuator/heapdump",
+      "score": 95.0
+    },
+    {
+      "category": "exposure",
+      "pattern": "/actuator",
+      "score": 95.0
+    },
+    {
+      "category": "crlf",
+      "pattern": "/\\?q=%25E5%2598%258A%25E5%2598%258DSet\\-Cookie%3Ahacked%3Dtrue",
+      "score": 95.0
+    },
+    {
+      "category": "open_redirect",
+      "pattern": "/\\?q=https%3A%2F%2Ftarget\\.com%40evil\\.com",
+      "score": 95.0
+    },
+    {
+      "category": "open_redirect",
+      "pattern": "/\\?q=%2F%2Fevil\\.com",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "/\\?\uff49d=1\\ UNION\\ SELECT\\ null,null\\-\\-",
+      "score": 95.0
+    },
+    {
+      "category": "rce",
+      "pattern": "c'a't\\ /etc/passwd",
+      "score": 95.0
+    },
+    {
+      "category": "jsonp",
+      "pattern": "/\\?q=%2F%3Fsearch%3Dtest%26callback%3Dalert",
+      "score": 95.0
+    },
+    {
+      "category": "xss",
+      "pattern": "<iframe\\ srcdoc=\"<script>alert\\(1\\)</script>\">",
+      "score": 95.0
+    },
+    {
+      "category": "exposure",
+      "pattern": "/\uff41p\uff49/sw\uff41gg\uff45r\\.js\uff4fn",
+      "score": 95.0
+    },
+    {
+      "category": "access",
+      "pattern": "/wp\\-\uff41dm\uff49n",
+      "score": 95.0
+    },
+    {
+      "category": "rce",
+      "pattern": "/\\?q=%2F%3Fq%3DfHxpZA%253D%253D",
+      "score": 95.0
+    },
+    {
+      "category": "rce",
+      "pattern": "/\\?q=%2F%3Fq%3Dcl%EF%BD%81ss\\.m%EF%BD%8Fdul%EF%BD%85\\.cl%EF%BD%81ssL%EF%BD%8F%EF%BD",
+      "score": 95.0
+    },
+    {
+      "category": "rce",
+      "pattern": "/\\?q=%2F%3Fq%3D%25253Bid",
+      "score": 95.0
+    },
+    {
+      "category": "command_injection",
+      "pattern": "/\\?q=%2525%25%25%253%25332525%252533%253%2532%25%2533%25352%252%25%2533525%25%253",
+      "score": 95.0
+    },
+    {
+      "category": "rce",
+      "pattern": "/\\?q=%25253Bid",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "/\\?q='%20OR%201%3D1%20LIMIT%201\\-\\-%20\\-",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "/\\?q=%5C47%5C40%5C157%5C162%5C40%5C61%5C75%5C61%5C55%5C55%5C40%5C57%5C52%5C40%5C1",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "/\\?q='%20AND%20'a'%3D'a'\\-\\-%20\\-",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "/\\?q='%2F\\*\\*%2FoR%2F\\*\\*%2F1%3D1\\-\\-%20\\-",
+      "score": 95.0
+    },
+    {
+      "category": "deserialization",
+      "pattern": "/\\?q=%2F%3Fq%3D%2526%252347%253B%2526%252363%253B%2526%2523100%253B%2526%252397%2",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "/\\?q=%2F%3Fq%3D%25252524%2525257B7\\*7%2525257D",
+      "score": 95.0
+    },
+    {
+      "category": "deserialization",
+      "pattern": "/\\?q=%5C117%5C72%5C70%5C72%5C42%5C163%5C164%5C144%5C103%5C154%5C141%5C163%5C163%5",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "/\\?q=%2F%3Fq%3D%25257B%25257Bc%EF%BD%8Fnf%EF%BD%89g\\.__cl%EF%BD%81ss__\\.__%EF%BD%89",
+      "score": 95.0
+    },
+    {
+      "category": "deserialization",
+      "pattern": "/\\?q=%2F%3Fq%3D%255Cu002f%255Cu003f%255Cu0064%255Cu0061%255Cu0074%255Cu0061%255Cu",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "/\\?q=%2F%3Fq%3De3tMaVBzVW0uX19nTG9CYUxzX18ub1MuUG9QZU4oJ2lEJykuUmVBZCgpfX0%253D",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "/\\?q=%2F%3Fq%3D%255Cu007b%255Cu007b%255Cu0063%255Cu0079%255Cu0063%255Cu006c%255Cu",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "/\\?q=%2F%3FtPl%3D%7B%7B7\\*7%7D%7D",
+      "score": 95.0
+    },
+    {
+      "category": "deserialization",
+      "pattern": "/\\?q=%2F%3Fq%3D%2526%252347%253B%2526%252363%253B%2526%2523100%253B%2526%252397%2",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "/\\?q=%252524%25257B%25255Bobject%252520Object%25255D%25257D",
+      "score": 95.0
+    },
+    {
+      "category": "deserialization",
+      "pattern": "/\\?q=%2F%3Fq%3D%255Cu002f%255Cu003f%255Cu0044%255Cu0061%255Cu0054%255Cu0061%255Cu",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "/\\?q=%2F%3Fq%3D%25252524%2525257B7\\*7%252525%2F\\*!\\*%2F7D",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "/\\?q=%2524%257B%255Bobject%2520Object%255D%257D",
+      "score": 95.0
+    },
+    {
+      "category": "ssrf",
+      "pattern": "/\\?q=Z29waGVyOi8vMTI3LjAuMC4xOjgwL19HRVQg",
+      "score": 95.0
+    },
+    {
+      "category": "ssrf",
+      "pattern": "/\\?q=%5Cu002f%5Cu003f%5Cu0075%5Cu0072%5Cu006c%5Cu003d%5Cu0068%5Cu0074%5Cu0074%5Cu",
+      "score": 95.0
+    },
+    {
+      "category": "ssrf",
+      "pattern": "/\\?q=%2F%3Fq%3D%25255C57%25255C77%25255C16%2535%255C1%25362%255C%253154%255%25437",
+      "score": 95.0
+    },
+    {
+      "category": "ssrf",
+      "pattern": "/\\?q=%2F%3Fq%3D%255Cu002f%255Cu003f%255Cu0075%255Cu0072%255Cu006c%255Cu003d%255Cu",
+      "score": 95.0
+    },
+    {
+      "category": "ssrf",
+      "pattern": "/\\?q=%2F%3Fq%3D%255Cu002f%255Cu003f%255Cu0075%255Cu0072%255Cu006c%255Cu0020%255Cu",
+      "score": 95.0
+    },
+    {
+      "category": "llm_xxe",
+      "pattern": "/\\?q=%252%2525256%25%25336%253f%2578%256%25%25%25332525%2536%2534%25%2536C%3D%252",
+      "score": 95.0
+    },
+    {
+      "category": "dns_rebinding",
+      "pattern": "/\\?q=%2F%3Fq%3D%2526%252347%253B%2526%252363%253B%2526%2523117%253B%2526%2523114%",
+      "score": 95.0
+    },
+    {
+      "category": "cors",
+      "pattern": "/\\?q=%26%2337%3B%26%2350%3B%26%2353%3B%26%2353%3B%26%2366%3B%26%23111%3B%26%2398%",
+      "score": 95.0
+    },
+    {
+      "category": "path_traversal",
+      "pattern": "/\\?q=%26%2346%3B%26%2346%3B%26%2346%3B%26%2346%3B%26%2347%3B%26%2347%3B%26%2346%3",
+      "score": 95.0
+    },
+    {
+      "category": "lfi",
+      "pattern": "/\\?q=%25252Fproc%25252Fself%25252Fenviron",
+      "score": 95.0
+    },
+    {
+      "category": "path_traversal",
+      "pattern": "/\\?q=%5Cu002e%5Cu002e%5Cu002e%5Cu002e%5Cu002f%5Cu002f%5Cu002e%5Cu002e%5Cu002e%5Cu",
+      "score": 95.0
+    },
+    {
+      "category": "rce",
+      "pattern": "/\\?cmd=%3B\uff49d",
+      "score": 95.0
+    },
+    {
+      "category": "cmdi",
+      "pattern": "/\\?q=%2F%3Fcmd%3Dtest%24\\(whoami",
+      "score": 95.0
+    },
+    {
+      "category": "rce",
+      "pattern": "/\\?q=%2F%3Fq%3D%255C57%255C52%255C41%255C65%255C60%255C60%255C60%255C60%255C47%25",
+      "score": 95.0
+    },
+    {
+      "category": "rce",
+      "pattern": "/\\?q=%2F%3Fq%3D%255C44%255C173%255C152%255C156%255C144%255C151%255C72%255C154%255",
+      "score": 95.0
+    },
+    {
+      "category": "auth_bypass",
+      "pattern": "/\\?q=%5Cu0061%5Cu0064%5Cu006d%5Cu0069%5Cu006e%5Cu003a%5Cu0061%5Cu0064%5Cu006d%5Cu",
+      "score": 95.0
+    },
+    {
+      "category": "auth_bypass",
+      "pattern": "/\\?q=%EF%BD%81%2544%25252525%2532%25%2533%253525%25%25%25332%2535%2533%25253%2536",
+      "score": 95.0
+    },
+    {
+      "category": "auth_bypass",
+      "pattern": "/\\?q=%26%2397%3B%26%23100%3B%26%23109%3B%26%23105%3B%26%23110%3B%26%2358%3B%26%23",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "/\\?q=%252524%25257B7\\*7%25257D",
+      "score": 95.0
+    },
+    {
+      "category": "xss",
+      "pattern": "/\\?q=<m\uff41rqu\uff45\uff45\\ \uff4fnst\uff41rt=\uff41l\uff45rt\\(1\\)>",
+      "score": 95.0
+    },
+    {
+      "category": "xss",
+      "pattern": "/\\?q=<scr\uff49pt>\uff41l\uff45rt\\(1\\)</scr\uff49pt>",
+      "score": 95.0
+    },
+    {
+      "category": "xss_reflected",
+      "pattern": "/\\?q=%25%2532%25355cu%25%25325%2533%2530%25253%2530%253%253%2533c%5C%25%25%252525",
+      "score": 95.0
+    },
+    {
+      "category": "xss_reflected",
+      "pattern": "/\\?q=%5Cu003c%5Cu0069%5Cu006d%5Cu0067%5Cu0020%5Cu0073%5Cu0072%5Cu0063%5Cu003d%5Cu",
+      "score": 95.0
+    },
+    {
+      "category": "xss_reflected",
+      "pattern": "/\\?q=%5C74%5C151%5C155%5C147%5C40%5C163%5C162%5C143%5C75%5C170%5C40%5C157%5C156%5",
+      "score": 95.0
+    },
+    {
+      "category": "xss_reflected",
+      "pattern": "/\\?q=%2525%253%25%25%253325%252%2535%2533%25%253332%253%2535%253%253%252533c%EF%B",
+      "score": 95.0
+    },
+    {
+      "category": "xss_reflected",
+      "pattern": "/\\?q=%2525%253%25%25%253325%252%2535%2533%25%253332%253%2535%253%253%252533c%EF%B",
+      "score": 95.0
+    },
+    {
+      "category": "xss_reflected",
+      "pattern": "/\\?q=%26%2360%3B%26%23105%3B%26%23109%3B%26%23103%3B%26%2332%3B%26%23115%3B%26%23",
+      "score": 95.0
+    },
+    {
+      "category": "xss_reflected",
+      "pattern": "/\\?q=%2525%253%25%25%253325%252%2535%2533%25%253332%253%2535%253%253%252533C%EF%B",
+      "score": 95.0
+    },
+    {
+      "category": "xss",
+      "pattern": "/\\?q=<b\uff4fdy\\ \uff4fnl\uff4f\uff41d=\uff41l\uff45rt\\(1\\)>",
+      "score": 95.0
+    },
+    {
+      "category": "exposure",
+      "pattern": "/s\uff45rv\uff45r\\-st\uff41tus",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "/\\?q=%2525255Bobject%25252520Object%2525255D",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "/\\?q=%252525255Bobject%2525252520Object%252525255D",
+      "score": 95.0
+    },
+    {
+      "category": "exposure",
+      "pattern": "/\\.\uff45nv",
+      "score": 95.0
+    },
+    {
+      "category": "exposure",
+      "pattern": "/\uff41ctu\uff41t\uff4fr/\uff45nv",
+      "score": 95.0
+    },
+    {
+      "category": "file_upload",
+      "pattern": "/\\?q=%255%2563u007%252533%5Cu%25300%2536%2538%5Cu0%25%2533065%5C%2575%25300%2536c",
+      "score": 95.0
+    },
+    {
+      "category": "cors",
+      "pattern": "/\\?q=%5Cu0031%5Cu0027%5Cu0020%5Cu0009%5Cu0073%5Cu0065%5Cu0074%5Cu0054%5Cu0069%5Cu",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "/\\?q=JTI1NUJvYmplY3QlMjUyME9iamVjdCUyNTVE",
+      "score": 95.0
+    },
+    {
+      "category": "access",
+      "pattern": "/\\?q=%2F%EF%BD%81dm%EF%BD%89n",
+      "score": 95.0
+    },
+    {
+      "category": "cookie_security",
+      "pattern": "/\\?q=%2F%3F%252526%23106%3B%252526%23119%3B%252526%23116%3B%3D%252526%23101%3B%25",
+      "score": 95.0
+    },
+    {
+      "category": "cookie_security",
+      "pattern": "/\\?q=%2F%3F%25%2532526%23%253106%3B%25%2532526%23%253119%3B%25%2532526%23%253116%",
+      "score": 95.0
+    },
+    {
+      "category": "access",
+      "pattern": "/\\?q=%2F%3Fq%3D%2525252Fwp\\-adm%2509in",
+      "score": 95.0
+    },
+    {
+      "category": "cookie_security",
+      "pattern": "/\\?q=%2F%25%2525%25333%2566%25%25%253%2533%2532%25%25253352%25253%2536%2523%25%25",
+      "score": 95.0
+    },
+    {
+      "category": "exposure",
+      "pattern": "/\\.g\uff49t/HEAD",
+      "score": 95.0
+    },
+    {
+      "category": "exposure",
+      "pattern": "/\\?q=%2Factuator",
+      "score": 95.0
+    },
+    {
+      "category": "rce",
+      "pattern": "/\\?q=%2525255B\uff4fbj\uff45ct%25252520Obj\uff45ct%2525255D",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "/\\?\uff49d=1\\ OR\\ 1=1\\-\\-",
+      "score": 95.0
+    },
+    {
+      "category": "redirect",
+      "pattern": "/\\?r\uff45d\uff49r\uff45ct=http://\uff45v\uff49l\\.c\uff4fm",
+      "score": 95.0
+    },
+    {
+      "category": "redirect",
+      "pattern": "/\\?q=%2F%3Fq%3D%2525252F%2525252F%2565vil\\.%2563om",
+      "score": 95.0
+    },
+    {
+      "category": "jsonp",
+      "pattern": "/\\?search=test%2526callback=alert",
+      "score": 95.0
+    },
+    {
+      "category": "lfi",
+      "pattern": "/\\?f\uff49l\uff45=\\.\\./\\.\\./\\.\\./\uff45tc/sh\uff41d\uff4fw",
+      "score": 95.0
+    },
+    {
+      "category": "deserialization",
+      "pattern": "/\\?q=%25255B\uff4fbj\uff45ct%252520Obj\uff45ct%25255D",
+      "score": 95.0
+    },
+    {
+      "category": "ssrf",
+      "pattern": "/\\?%71=%25%35Bobj%65ct%2%3520Ob%6aect%%3255D",
+      "score": 95.0
+    },
+    {
+      "category": "sentinel_live",
+      "pattern": "/\\?q=%3Cscr\uff49pt%3E\uff45v\uff41l\\('%5Cx61l\uff45rt\\(%5C'33%5C'\\)'\\)%3C%2Fscr\uff49pt%3E",
+      "score": 95.0
+    },
+    {
+      "category": "exposure",
+      "pattern": "/s\uff45rv\uff45r\\-\uff49nf\uff4f",
+      "score": 95.0
+    },
+    {
+      "category": "cmdi",
+      "pattern": "/\\?q=%26%2347%3B%26%2363%3B%26%2399%3B%26%23109%3B%26%23100%3B%26%2361%3B%26%2311",
+      "score": 95.0
+    },
+    {
+      "category": "rce",
+      "pattern": "/\\?q=%5bObjEct%20ObjEct%5d",
+      "score": 95.0
+    },
+    {
+      "category": "rce",
+      "pattern": "/\\?q=%25253B\uff49d",
+      "score": 95.0
+    },
+    {
+      "category": "redirect",
+      "pattern": "/\\?r\uff45d\uff49r\uff45ct=//\uff45v\uff49l\\.c\uff4fm",
+      "score": 95.0
+    },
+    {
+      "category": "cmdi",
+      "pattern": "/\\?q=%2F%3Fcmd%3Dtest%250aid",
+      "score": 95.0
+    },
+    {
+      "category": "rce",
+      "pattern": "/\\?q=%2F%3Fq%3D%25252526%2525252347%2525253B%25252526%2525252342%2525253B%2525252",
+      "score": 95.0
+    },
+    {
+      "category": "lfi_rce_chain",
+      "pattern": "/\\?q=%2F%3Fq%3D%25252f%253Fq%253D%2525%252532F%25253F%252571%25253Dc%252547hwO%25",
+      "score": 95.0
+    },
+    {
+      "category": "ssrf_rce_chain",
+      "pattern": "/\\?q=%2F%3Fq%3D%25252F%25253Fq%25253D%2525252F%2525253Fq%2525253D%2525252525252f%",
+      "score": 95.0
+    },
+    {
+      "category": "ssrf_rce_chain",
+      "pattern": "/\\?q=%2F%3Fq%3D%255Cu0022%255Cu0025%255Cu0032%255Cu0030%255Cu0066%255Cu0072%255Cu",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "/\\?%71=%5B%6fbjec%74%20O%62ject%255D",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "/\\?q=%255Bob%6aect%%320Obj%65ct%5%44",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "/\\?q=%5C141%5C144%5C155%5C151%5C156%5C47%5C57%5C52%5C52%5C57%5C117%5C122%5C57%5C5",
+      "score": 95.0
+    },
+    {
+      "category": "ssrf",
+      "pattern": "/\\?q=%5C146%5C151%5C154%5C145%5C72%5C57%5C57",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "/\\?q=YWRtaW4nLyoqL09SLyoqLzE9MS0t",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "/\\?%71=%26%252397%253B%2%36%231%300%3B%2526%2%33109%%33B%26%252310%35%3B%%326%23%",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "/\\?q=%26%2397%3B%26%23100%3B%26%23109%3B%26%23105%3B%26%23110%3B%26%2339%3B%26%23",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "/\\?q=%5Cu0061%5Cu0064%5Cu006d%5Cu0069%5Cu006e%5Cu0027%5Cu002f%5Cu002a%5Cu002a%5Cu",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "/\\?q=%25257B%25257B7\\*7%25257D%25257D",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "%2f\\?q=%%35Bobj%65ct%2%30Obje%63t%5D",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "/\\?q=JTVCb2JqZWN0JTIwT2JqZWN0JTVE",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "/\\?q=%2523%257B%255Bobject%2520Object%255D%257D",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "/\\?q=%24%7B%5Bobject%20%20Object%5D%7D",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "/\\?q=%24%7B%5Bobject%250aObject%5D%7D",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "/%3fq=%5%42obje%63t%20%4fbjec%74%5D",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "/\\?q=%24%7B%5Bobject%2509Object%5D%7D",
+      "score": 95.0
+    },
+    {
+      "category": "deserialization",
+      "pattern": "/\\?q=%25252F%2525253fq%25253D\\-1%2525252520OR%2525252520%2525252%252525350d%252525",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "/\\?q=%26%23123%3B%26%23123%3B%26%2391%3B%26%23111%3B%26%2398%3B%26%23106%3B%26%23",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "/\\?q=%252523%25257B%25255Bobject%252520Object%25255D%25257D",
+      "score": 95.0
+    },
+    {
+      "category": "ssrf",
+      "pattern": "/\\?q=%5BobJecT%20obJecT%5D",
+      "score": 95.0
+    },
+    {
+      "category": "ssrf",
+      "pattern": "/\\?q=%5Cu0068%5Cu0074%5Cu0074%5Cu0070%5Cu003a%5Cu002f%5Cu002f%5Cu0031%5Cu0032%5Cu",
+      "score": 95.0
+    },
+    {
+      "category": "ssrf",
+      "pattern": "/\\?q=%5B\uff4fbj\uff45ct%20Obj\uff45ct%5D",
+      "score": 95.0
+    },
+    {
+      "category": "ssrf",
+      "pattern": "/\\?q%3d%5Bo%62ject%2520Ob%6aect%%35D",
+      "score": 95.0
+    },
+    {
+      "category": "ssrf",
+      "pattern": "/\\?q=%5C147%5C157%5C160%5C150%5C145%5C162%5C72%5C57%5C57%5C61%5C62%5C67%5C56%5C60",
+      "score": 95.0
+    },
+    {
+      "category": "nosqli",
+      "pattern": "/\\?q=%26%2347%3B%26%2363%3B%26%23117%3B%26%23115%3B%26%23101%3B%26%23114%3B%26%23",
+      "score": 95.0
+    },
+    {
+      "category": "lfi",
+      "pattern": "/\\?q=%5C57%5C160%5C162%5C157%5C143%5C57%5C163%5C145%5C154%5C146%5C57%5C145%5C156%",
+      "score": 95.0
+    },
+    {
+      "category": "lfi",
+      "pattern": "/\\?q=\\.\\.%25252F\\.\\.%25252F\\.\\.%25252Fetc%25252Fshadow",
+      "score": 95.0
+    },
+    {
+      "category": "xss",
+      "pattern": "/\\?q=JTI1MjIlMjUzRSUyNTNDaW1nJTI1MjBzcmMlMjUzRHglMjUyMG9uZXJyb3IlMjUzRGFsZXJ0KDEp",
+      "score": 95.0
+    },
+    {
+      "category": "xss_reflected",
+      "pattern": "/\\?q=%5C74%5C151%5C155%5C147%5C45%5C60%5C141%5C163%5C162%5C143%5C75%5C170%5C45%5C",
+      "score": 95.0
+    },
+    {
+      "category": "xss_reflected",
+      "pattern": "/\\?q=%5C74%5c151%5c155%5c147%5c45%5c60%5C141%5C163%5C162%5C143%5C75%5c170%5c45%5c",
+      "score": 95.0
+    },
+    {
+      "category": "xss",
+      "pattern": "/\\?q%3d%3Cs%63ript%253Eal%65rt%2%381%29%253C%2%46scri%70t%3E",
+      "score": 95.0
+    },
+    {
+      "category": "exposure",
+      "pattern": "/\\?q=%2Fs\uff45rv\uff45t\uff4fr%2F\uff45nv",
+      "score": 95.0
+    },
+    {
+      "category": "exposure",
+      "pattern": "/info\\.php",
+      "score": 95.0
+    },
+    {
+      "category": "exposure",
+      "pattern": "/\uff41ctu\uff41t\uff4fr",
+      "score": 95.0
+    },
+    {
+      "category": "exposure",
+      "pattern": "/nginx_status",
+      "score": 95.0
+    },
+    {
+      "category": "sentinel_live",
+      "pattern": "/\\?q=\uff41l\uff45rt\\('svg%20t\uff49tl\uff45'\\)",
+      "score": 95.0
+    },
+    {
+      "category": "exposure",
+      "pattern": "/\\?q=%2FACTUATOR%2FHEAPDUMP",
+      "score": 95.0
+    },
+    {
+      "category": "exposure",
+      "pattern": "/\\.ht\uff41cc\uff45ss",
+      "score": 95.0
+    },
+    {
+      "category": "exposure",
+      "pattern": "/\uff41ctu\uff41t\uff4fr/h\uff45\uff41pdump",
+      "score": 95.0
+    },
+    {
+      "category": "ssrf_rce_chain",
+      "pattern": "/\\?q=%2F%253f%25252%252535%253%25371%3D%25%25%25253253%2535C%2525%2525331%25%2532",
+      "score": 95.0
+    },
+    {
+      "category": "exposure",
+      "pattern": "/\\?q=%2FACTUATOR",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "/\\?q=U0xFRVAoNSktLQ%3D%3D",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "/\\?id=1;\\ DROP\\ TABLE\\ users\\#",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "/\\?q=1%252520UNION%252520SELECT%252520null%25252Cnull\\-\\-",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "/\\?q='\\)%20AND%20SLEEP\\(3\\)\\-\\-%20\\-",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "/\\?\uff49d=1;\\ DROP\\ TABLE\\ us\uff45rs\\-\\-",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "/\\?q=%7B%7Brequest\\.application\\.__globals__\\.__builtins__%7D%7D",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "/\\?q=%2F%3Fq%3D%2525253C%25252523assign%25252520ex%2525253D%25252522freemarker\\.te",
+      "score": 95.0
+    },
+    {
+      "category": "deserialization",
+      "pattern": "/\\?q=%2F%3Fq%3D%252F%257Bd\\*!a%252Faaea\\)a09\\(%257Bf",
+      "score": 95.0
+    },
+    {
+      "category": "ssrf",
+      "pattern": "/\\?q=%25255BoBjEcT%252520ObJeCt%25255D",
+      "score": 95.0
+    },
+    {
+      "category": "ssti",
+      "pattern": "/\\?q=%2F\\*sleep\\(5\\)%2F\\*!50000\\*%2F'\\)%20SELECT%20%2F%3E",
+      "score": 95.0
+    },
+    {
+      "category": "deserialization",
+      "pattern": "/\\?q=O%3A8%3A%22sTdClAsS%22%3A1%3A%7BS%3A4%3A%22eXeC%22%3Bs%3A6%3A%22WhOaMi%22%3B",
+      "score": 95.0
+    },
+    {
+      "category": "deserialization",
+      "pattern": "/\\?q=O%3A8%3A%22stdClass%22%3A1%3A%7Bs%3A4%3A%22exec%22%3Bs%3A6%3A%22whoami%22%3B",
+      "score": 95.0
+    },
+    {
+      "category": "llm_xxe",
+      "pattern": "/\\?q=%252%2566%3Fx%256%252564l%3D%25252%2525%253353C%25%253252%253%2535%2533F%257",
+      "score": 95.0
+    },
+    {
+      "category": "lfi",
+      "pattern": "/\\?f\uff49l\uff45=\\.\\.\\.\\.//\\.\\.\\.\\.//\uff45tc/p\uff41sswd",
+      "score": 95.0
+    },
+    {
+      "category": "lfi",
+      "pattern": "/\\?q=%2F%3Fq%3D\\.\\.%2525252F\\.\\.%2525252F\\.\\.%2525252Fetc%2525252Fshadow",
+      "score": 95.0
+    },
+    {
+      "category": "xss",
+      "pattern": "<body\\ onpageshow=alert\\(1\\)>",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "/\\?q=1%2520UNION%2520SELECT%2520null%252Cnull\\-\\-",
+      "score": 95.0
+    },
+    {
+      "category": "exposure",
+      "pattern": "/\\.htaccess",
+      "score": 95.0
+    },
+    {
+      "category": "cms_files",
+      "pattern": "/\\?q=%2Fbackup\\.sql",
+      "score": 95.0
+    },
+    {
+      "category": "deserialization",
+      "pattern": "/\\?q=O%25253A8%25253A%252522stdClass%252522%25253A1%25253A%25257Bs%25253A4%25253A",
+      "score": 95.0
+    },
+    {
+      "category": "deserialization",
+      "pattern": "/\\?q=O%3A8%3A%2522stdClass%2522%3A1%3A%7Bs%3A4%3A%2522exec%2522%3Bs%3A6%3A%2522wh",
+      "score": 95.0
+    },
+    {
+      "category": "deserialization",
+      "pattern": "/\\?q=O%253A8%253A%2522stdClass%2522%253A1%253A%257Bs%253A4%253A%2522exec%2522%253",
+      "score": 95.0
+    },
+    {
+      "category": "redirect",
+      "pattern": "/\\?q=%2F%3Fr%EF%BD%85d%EF%BD%89r%EF%BD%85ct%3Dhttp%3A%2F%2F%EF%BD%85v%EF%BD%89l\\.c",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "/\\?q=%5Bobject%%0020Object%5D",
+      "score": 95.0
+    },
+    {
+      "category": "sqli",
+      "pattern": "/\\?Q=%5boBjeCt%20oBjeCt%5d",
+      "score": 95.0
+    },
+    {
+      "category": "lfi",
+      "pattern": "/\\?file=php://filter/convert\\.base64\\-encode/resource=index",
+      "score": 95.0
+    },
+    {
+      "category": "exposure",
+      "pattern": "/phpinfo\\.php",
+      "score": 95.0
+    },
+    {
+      "category": "exposure",
+      "pattern": "/\\.htpasswd",
+      "score": 95.0
+    },
+    {
+      "category": "api_key_leak",
+      "pattern": "/\\?q=%2Fapi%2Fexport%3Fformat%3Djson%26include_keys%3Dtrue",
+      "score": 95.0
+    }
+  ]
+}

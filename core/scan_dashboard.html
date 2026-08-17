@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CYBERIA — Scan Dashboard</title>
+<style>
+:root{
+  --bg:#0a0a0a;--bg2:#0d0d0d;--bg3:#111;--bg4:#141414;
+  --border:#1c1c1c;--border2:#222;
+  --green:#00ff41;--green2:#00cc33;--green3:#009922;
+  --red:#ff2244;--orange:#ff8800;--yellow:#ffdd00;
+  --blue:#4488ff;--purple:#aa44ff;--cyan:#00ccff;
+  --text:#c8c8c8;--dim:#555;--dim2:#333;
+  --font:'JetBrains Mono','Fira Code','Courier New',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--font);font-size:13px;overflow:hidden}
+body{display:flex;flex-direction:column}
+
+/* ── HEADER ── */
+header{
+  display:flex;align-items:center;gap:14px;
+  padding:12px 24px;
+  background:linear-gradient(90deg,#001500 0%,#050505 60%,#0a0a0a 100%);
+  border-bottom:2px solid var(--green3);
+  flex-shrink:0;
+}
+.logo{color:var(--green);font-size:1.2em;font-weight:bold;letter-spacing:4px}
+.logo span{color:var(--green3)}
+.sub{color:var(--dim);font-size:.75em;letter-spacing:1px}
+.hdr-spacer{flex:1}
+#status-wrap{display:flex;align-items:center;gap:8px}
+#status-dot{width:8px;height:8px;border-radius:50%;background:var(--dim2);transition:all .3s}
+#status-dot.scanning{background:var(--green);box-shadow:0 0 10px var(--green);animation:blink 1s infinite}
+#status-dot.done{background:var(--blue)}
+#status-dot.error{background:var(--red)}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+#status-text{font-size:.72em;color:var(--dim);letter-spacing:2px}
+
+/* ── MAIN GRID ── */
+.grid{
+  display:grid;
+  grid-template-columns:270px 1fr 230px;
+  flex:1;
+  overflow:hidden;
+  border-top:1px solid var(--border);
+}
+.panel{
+  background:var(--bg);
+  padding:18px 16px;
+  overflow-y:auto;
+  overflow-x:hidden;
+  border-right:1px solid var(--border);
+}
+.panel:last-child{border-right:none}
+.ptitle{
+  font-size:.68em;letter-spacing:2px;text-transform:uppercase;
+  color:var(--green3);border-bottom:1px solid var(--border);
+  padding-bottom:7px;margin-bottom:14px;
+}
+
+/* scrollbar */
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--dim2);border-radius:2px}
+
+/* ── LEFT PANEL ── */
+.flabel{display:block;font-size:.68em;letter-spacing:1px;text-transform:uppercase;color:var(--dim);margin-bottom:5px}
+#target-url{
+  width:100%;background:var(--bg4);border:1px solid var(--dim2);border-radius:3px;
+  color:var(--green);font-family:var(--font);font-size:.82em;
+  padding:8px 10px;outline:none;transition:border-color .2s;
+}
+#target-url:focus{border-color:var(--green3)}
+#target-url::placeholder{color:var(--dim)}
+
+.cats-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:10px 0 16px}
+.cat-item{
+  display:flex;align-items:center;gap:7px;
+  background:var(--bg4);border:1px solid var(--border2);border-radius:3px;
+  padding:7px 9px;cursor:pointer;user-select:none;transition:border-color .2s;
+}
+.cat-item:hover{border-color:var(--dim)}
+.cat-item input[type=checkbox]{accent-color:var(--green);width:13px;height:13px;flex-shrink:0}
+.cat-name{font-size:.78em;font-weight:bold}
+
+.btn-scan{
+  width:100%;background:#001200;border:2px solid var(--green3);border-radius:4px;
+  color:var(--green);font-family:var(--font);font-size:.85em;font-weight:bold;
+  letter-spacing:2px;padding:11px;cursor:pointer;transition:all .2s;text-transform:uppercase;
+}
+.btn-scan:hover:not(:disabled){background:#002200;box-shadow:0 0 18px rgba(0,255,65,.2)}
+.btn-scan:disabled{border-color:var(--dim2);color:var(--dim);cursor:not-allowed;background:var(--bg4)}
+
+.scan-meta{margin-top:14px;font-size:.68em;color:var(--dim);line-height:1.9}
+.scan-meta b{color:var(--dim)}
+
+/* ── CENTER PANEL (terminal) ── */
+#panel-center{padding:18px 14px;display:flex;flex-direction:column}
+.term-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+#payload-count{font-size:.68em;color:var(--dim)}
+#terminal{
+  flex:1;background:#030303;border:1px solid #191919;border-radius:4px;
+  font-size:.78em;line-height:1.65;padding:12px 14px;
+  overflow-y:auto;overflow-x:hidden;white-space:pre-wrap;word-break:break-all;
+}
+.tl{display:block}
+.tl-sys{color:var(--blue)}
+.tl-ok{color:var(--green)}
+.tl-conf{color:var(--green);font-weight:bold}
+.tl-block{color:var(--red)}
+.tl-likely{color:var(--orange)}
+.tl-inc{color:#444}
+.tl-err{color:#882222}
+.tl-proof{color:var(--yellow);font-weight:bold}
+.tl-sep{color:#1e1e1e}
+
+/* ── RIGHT PANEL ── */
+.sblock{margin-bottom:18px}
+.slabel{font-size:.66em;letter-spacing:1px;text-transform:uppercase;color:var(--dim);margin-bottom:3px}
+.svalue{font-size:2em;font-weight:bold;color:var(--text);line-height:1}
+.svalue.s-conf{color:var(--green)}
+.svalue.s-block{color:var(--red)}
+.svalue.s-proof{color:var(--yellow)}
+
+.waf-box{
+  background:var(--bg4);border:1px solid var(--border2);border-radius:4px;
+  padding:10px 12px;margin:16px 0;
+}
+.waf-lbl{font-size:.66em;text-transform:uppercase;letter-spacing:1px;color:var(--dim)}
+#waf-name{font-size:.95em;font-weight:bold;color:var(--orange);margin:4px 0 2px}
+#waf-conf{font-size:.7em;color:var(--dim)}
+
+/* category progress bars */
+#cat-prog{margin-top:4px}
+.cprow{margin-bottom:10px}
+.cplabel{display:flex;justify-content:space-between;font-size:.67em;color:var(--dim);margin-bottom:3px}
+.cpbar{background:#151515;border-radius:2px;height:3px;overflow:hidden}
+.cpfill{height:100%;width:0%;transition:width .6s ease;border-radius:2px}
+
+/* ── PROOFS SECTION ── */
+#proofs-section{
+  background:var(--bg2);border-top:2px solid var(--border);
+  padding:14px 24px 18px;flex-shrink:0;max-height:220px;overflow-y:auto;
+}
+.proofs-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.proofs-title{font-size:.68em;letter-spacing:2px;text-transform:uppercase;color:var(--green3)}
+#proofs-count{font-size:.68em;color:var(--dim)}
+#proofs-grid{display:flex;flex-wrap:wrap;gap:10px}
+#no-proofs{color:var(--dim);font-size:.78em;font-style:italic;align-self:center}
+
+.pcard{
+  background:var(--bg);border:1px solid var(--border2);border-radius:5px;
+  padding:12px 14px;width:220px;flex-shrink:0;
+  animation:fadein .35s ease;
+}
+@keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.pcard.crit{border-left:3px solid var(--red)}
+.pcard.high{border-left:3px solid var(--orange)}
+.pcard.med{border-left:3px solid var(--yellow)}
+
+.pcat{
+  display:inline-block;font-size:.65em;font-weight:bold;letter-spacing:1px;
+  padding:2px 7px;border-radius:2px;margin-bottom:7px;
+}
+.ptyp{font-size:.72em;font-weight:bold;color:var(--text);margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pevi{font-size:.67em;color:var(--dim);margin-bottom:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pbadge{
+  display:inline-block;font-size:.63em;font-weight:bold;
+  padding:1px 7px;border-radius:2px;margin-bottom:9px;
+}
+.bcrit{background:rgba(255,34,68,.12);color:var(--red)}
+.bhigh{background:rgba(255,136,0,.12);color:var(--orange)}
+.bmed{background:rgba(255,221,0,.12);color:var(--yellow)}
+
+.btn-proof{
+  display:block;width:100%;text-align:center;
+  background:transparent;border:1px solid var(--dim2);border-radius:3px;
+  color:var(--dim);font-family:var(--font);font-size:.67em;
+  padding:5px;cursor:pointer;text-decoration:none;transition:all .2s;
+}
+.btn-proof:hover{border-color:var(--green3);color:var(--green)}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">&#9670;&nbsp;<span>CYBER</span>IA</div>
+  <div class="sub">Pentest&nbsp;Dashboard&nbsp;&mdash;&nbsp;Scanner&nbsp;Autonome</div>
+  <div class="hdr-spacer"></div>
+  <div id="status-wrap">
+    <div id="status-dot"></div>
+    <div id="status-text">IDLE</div>
+  </div>
+</header>
+
+<!-- MAIN GRID -->
+<div class="grid">
+
+  <!-- LEFT — config -->
+  <div class="panel">
+    <div class="ptitle">&#9658; Configuration</div>
+
+    <label class="flabel">URL cible</label>
+    <input type="text" id="target-url" placeholder="http://target.com/page?param=">
+
+    <div style="margin-top:14px;margin-bottom:6px">
+      <label class="flabel">Catégories</label>
+    </div>
+    <div class="cats-grid">
+      <label class="cat-item">
+        <input type="checkbox" class="cat-cb" value="xss" checked>
+        <span class="cat-name" style="color:#ffaa00">XSS</span>
+      </label>
+      <label class="cat-item">
+        <input type="checkbox" class="cat-cb" value="sqli" checked>
+        <span class="cat-name" style="color:#ff4444">SQLi</span>
+      </label>
+      <label class="cat-item">
+        <input type="checkbox" class="cat-cb" value="lfi" checked>
+        <span class="cat-name" style="color:#ff8800">LFI</span>
+      </label>
+      <label class="cat-item">
+        <input type="checkbox" class="cat-cb" value="rce" checked>
+        <span class="cat-name" style="color:#ff2244">RCE</span>
+      </label>
+      <label class="cat-item">
+        <input type="checkbox" class="cat-cb" value="ssti" checked>
+        <span class="cat-name" style="color:#aa44ff">SSTI</span>
+      </label>
+      <label class="cat-item">
+        <input type="checkbox" class="cat-cb" value="ssrf" checked>
+        <span class="cat-name" style="color:#00ccff">SSRF</span>
+      </label>
+    </div>
+
+    <button class="btn-scan" id="btn-scan" onclick="startScan()">&#9654;&nbsp;Lancer le scan</button>
+
+    <div class="scan-meta" id="scan-meta"></div>
+  </div>
+
+  <!-- CENTER — terminal -->
+  <div class="panel" id="panel-center">
+    <div class="term-header">
+      <div class="ptitle" style="margin-bottom:0;border:none">&#9654; Terminal Live</div>
+      <span id="payload-count">0 payload(s)</span>
+    </div>
+    <div id="terminal">
+      <span class="tl tl-sys">&#9670; CYBERIA Scan Dashboard — prêt.</span>
+      <span class="tl tl-sys">&#9670; Configurez une URL cible et lancez le scan.</span>
+    </div>
+  </div>
+
+  <!-- RIGHT — stats -->
+  <div class="panel">
+    <div class="ptitle">&#9632; Stats Live</div>
+
+    <div class="sblock">
+      <div class="slabel">Payloads testés</div>
+      <div class="svalue" id="s-total">0</div>
+    </div>
+    <div class="sblock">
+      <div class="slabel">Confirmés</div>
+      <div class="svalue s-conf" id="s-conf">0</div>
+    </div>
+    <div class="sblock">
+      <div class="slabel">Bloqués</div>
+      <div class="svalue s-block" id="s-block">0</div>
+    </div>
+    <div class="sblock">
+      <div class="slabel">Preuves</div>
+      <div class="svalue s-proof" id="s-proof">0</div>
+    </div>
+
+    <div class="waf-box">
+      <div class="waf-lbl">WAF Détecté</div>
+      <div id="waf-name">—</div>
+      <div id="waf-conf">Confiance : —</div>
+    </div>
+
+    <div id="cat-prog"></div>
+  </div>
+</div>
+
+<!-- PROOFS -->
+<div id="proofs-section">
+  <div class="proofs-hdr">
+    <div class="proofs-title">&#9670; Preuves d&rsquo;Exploitation</div>
+    <div id="proofs-count"></div>
+  </div>
+  <div id="proofs-grid">
+    <span id="no-proofs">Aucune preuve trouvée pour le moment.</span>
+  </div>
+</div>
+
+<script>
+'use strict';
+
+// ── state ──────────────────────────────────────────────────────────────────
+let es = null, scanId = null, scanning = false;
+let st = {total:0, conf:0, block:0, proof:0};
+let userScrolled = false;
+
+// ── elements ───────────────────────────────────────────────────────────────
+const term      = document.getElementById('terminal');
+const btnScan   = document.getElementById('btn-scan');
+const sdot      = document.getElementById('status-dot');
+const stxt      = document.getElementById('status-text');
+
+// auto-scroll detection
+term.addEventListener('scroll', () => {
+  userScrolled = (term.scrollTop + term.clientHeight) < (term.scrollHeight - 30);
+});
+
+// ── terminal helpers ───────────────────────────────────────────────────────
+function tAppend(text, cls) {
+  const s = document.createElement('span');
+  s.className = 'tl ' + (cls || '');
+  s.textContent = text;
+  term.appendChild(s);
+  autoScroll();
+}
+
+function tAppendHtml(html, cls) {
+  const s = document.createElement('span');
+  s.className = 'tl ' + (cls || '');
+  s.innerHTML = html;
+  term.appendChild(s);
+  autoScroll();
+}
+
+function autoScroll() {
+  if (!userScrolled) term.scrollTop = term.scrollHeight;
+}
+
+function tSep() {
+  tAppend('─'.repeat(60), 'tl-sep');
+}
+
+function esc(s) {
+  return String(s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ── ui helpers ─────────────────────────────────────────────────────────────
+function setStat(id, val) { document.getElementById(id).textContent = val; }
+
+function setStatus(s) {
+  sdot.className = 'status-dot ' + s;
+  stxt.textContent = s.toUpperCase() || 'IDLE';
+}
+
+// ── category colors ────────────────────────────────────────────────────────
+const CAT_COLORS = {
+  xss:'#ffaa00', sqli:'#ff4444', lfi:'#ff8800',
+  rce:'#ff2244', ssti:'#aa44ff', ssrf:'#00ccff'
+};
+
+// ── verdict map ────────────────────────────────────────────────────────────
+const VERDICT = {
+  CONFIRMED:   {cls:'tl-conf',  icon:'✔'},
+  LIKELY:      {cls:'tl-likely',icon:'~'},
+  BLOCKED:     {cls:'tl-block', icon:'✖'},
+  INCONCLUSIVE:{cls:'tl-inc',   icon:'?'},
+  NO_IMPACT:   {cls:'tl-inc',   icon:'-'},
+  ERROR:       {cls:'tl-err',   icon:'⚠'},
+};
+
+// ── proof criticality ──────────────────────────────────────────────────────
+const PROOF_CRIT = {
+  SQLI_DATA_LEAKED:     {cls:'crit', badge:'bcrit', label:'CRITIQUE'},
+  LFI_FILE_READ:        {cls:'crit', badge:'bcrit', label:'CRITIQUE'},
+  RCE_COMMAND_OUTPUT:   {cls:'crit', badge:'bcrit', label:'CRITIQUE'},
+  SSRF_INTERNAL_ACCESS: {cls:'crit', badge:'bcrit', label:'CRITIQUE'},
+  XSS_REFLECTED:        {cls:'high', badge:'bhigh', label:'ÉLEVÉ'},
+  SSTI_EVALUATED:       {cls:'high', badge:'bhigh', label:'ÉLEVÉ'},
+};
+
+// ── start scan ─────────────────────────────────────────────────────────────
+async function startScan() {
+  const url = document.getElementById('target-url').value.trim();
+  if (!url) { tAppend('⚠ URL cible requise.', 'tl-err'); return; }
+
+  const cats = [...document.querySelectorAll('.cat-cb:checked')].map(e => e.value);
+  if (!cats.length) { tAppend('⚠ Sélectionnez au moins une catégorie.', 'tl-err'); return; }
+
+  // reset
+  st = {total:0, conf:0, block:0, proof:0};
+  ['s-total','s-conf','s-block','s-proof'].forEach(id => setStat(id, '0'));
+  document.getElementById('payload-count').textContent = '0 payload(s)';
+  document.getElementById('waf-name').textContent = '—';
+  document.getElementById('waf-conf').textContent = 'Confiance : —';
+  document.getElementById('cat-prog').innerHTML = '';
+  document.getElementById('waf-box') && (document.querySelector('.waf-box').style.borderColor='');
+  term.innerHTML = '';
+  userScrolled = false;
+
+  if (es) { es.close(); es = null; }
+  scanning = true;
+  btnScan.disabled = true;
+  btnScan.textContent = '⟳ Scan en cours…';
+  setStatus('scanning');
+
+  tAppend(`◆ Cible : ${url}`, 'tl-sys');
+  tAppend(`◆ Catégories : ${cats.join(', ').toUpperCase()}`, 'tl-sys');
+  tSep();
+
+  try {
+    const r = await fetch('/api/scan/start', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({url, categories: cats})
+    });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const d = await r.json();
+    scanId = d.scan_id;
+
+    document.getElementById('scan-meta').innerHTML =
+      `ID&nbsp;: <span style="color:#333">${scanId.slice(0,8)}…</span><br>` +
+      `Démarré&nbsp;: ${new Date().toLocaleTimeString()}`;
+
+    es = new EventSource(`/api/scan/stream/${scanId}`);
+    es.onmessage = onMsg;
+    es.onerror   = () => { if (scanning) { tAppend('⚠ Connexion SSE perdue.','tl-err'); endScan('error'); } };
+  } catch(err) {
+    tAppend(`✖ Erreur : ${err.message}`, 'tl-err');
+    endScan('error');
+  }
+}
+
+// ── SSE handler ────────────────────────────────────────────────────────────
+function onMsg(e) {
+  if (!e.data) return;
+  let msg;
+  try { msg = JSON.parse(e.data); } catch { return; }
+  const {type, data} = msg;
+
+  switch(type) {
+    case 'waf_detected':    onWaf(data);         break;
+    case 'category_start':  onCatStart(data);    break;
+    case 'category_done':   onCatDone(data);     break;
+    case 'payload_tested':  onPayload(data);     break;
+    case 'proof_found':     onProof(data);       break;
+    case 'scan_complete':   onComplete(data);    break;
+    case 'error':           onError(data);       break;
+    case 'end':             endScan('done');     break;
+  }
+}
+
+function onWaf(d) {
+  const name = (d.waf === 'unknown') ? 'AUCUN DÉTECTÉ' : d.waf.toUpperCase();
+  document.getElementById('waf-name').textContent = name;
+  document.getElementById('waf-conf').textContent = `Confiance : ${d.confidence}%`;
+  if (d.waf !== 'unknown') {
+    document.querySelector('.waf-box').style.borderColor = '#ff8800';
+  }
+  tAppend(`◆ WAF : ${name} (${d.confidence}%)`, 'tl-sys');
+  if (d.signatures && d.signatures.length)
+    tAppend(`  Signatures : ${d.signatures.slice(0,3).join(', ')}`, 'tl-sys');
+}
+
+function onCatStart(d) {
+  tSep();
+  tAppend(`◈ ${d.category.toUpperCase()} — début`, 'tl-sys');
+  addCatBar(d.category);
+}
+
+function onCatDone(d) {
+  tAppend(`◈ ${d.category.toUpperCase()} — ${d.confirmed}/${d.total} confirmés, bypass ${d.bypass_rate}%`, 'tl-sys');
+  const bar = document.getElementById(`cpf-${d.category}`);
+  const lbl = document.getElementById(`cpl-${d.category}`);
+  if (bar) bar.style.width = Math.min(d.bypass_rate, 100) + '%';
+  if (lbl) lbl.textContent = `${d.confirmed}/${d.total}`;
+}
+
+function onPayload(d) {
+  st.total++;
+  setStat('s-total', st.total);
+  document.getElementById('payload-count').textContent = `${st.total} payload(s)`;
+
+  const v = VERDICT[d.status] || {cls:'tl-inc', icon:'?'};
+  const col = CAT_COLORS[d.category] || '#888';
+  const pl  = d.payload.length > 48 ? d.payload.slice(0,48) + '…' : d.payload;
+
+  if (d.status === 'CONFIRMED' || d.status === 'LIKELY') {
+    st.conf++; setStat('s-conf', st.conf);
+  } else if (d.status === 'BLOCKED') {
+    st.block++; setStat('s-block', st.block);
+  }
+
+  tAppendHtml(
+    `${v.icon} <span style="color:${col}">[${esc(d.category.toUpperCase())}]</span> ` +
+    `${esc(pl)} <span style="color:#333">[${d.http_code}] ${d.ms}ms</span>`,
+    v.cls
+  );
+}
+
+function onProof(d) {
+  st.proof++; setStat('s-proof', st.proof);
+  tSep();
+  tAppend(`★ PREUVE : ${d.proof_type} [${d.category.toUpperCase()}]`, 'tl-proof');
+  tAppend(`  ${d.evidence.slice(0,80)}`, 'tl-proof');
+  addProofCard(d);
+}
+
+function onComplete(d) {
+  const s = d.summary;
+  tSep();
+  tAppend('◆ SCAN TERMINÉ', 'tl-sys');
+  tAppend(`  ${s.total_payloads_tested} payloads · ${s.total_confirmed} confirmés · bypass ${s.overall_bypass_rate}%`, 'tl-sys');
+  if (s.vulnerable_categories && s.vulnerable_categories.length)
+    tAppend(`  VULNÉRABLES : ${s.vulnerable_categories.join(', ').toUpperCase()}`, 'tl-conf');
+  else
+    tAppend('  Aucune vulnérabilité confirmée.', 'tl-inc');
+}
+
+function onError(d) {
+  tAppend(`✖ Erreur scanner : ${d.message}`, 'tl-err');
+  endScan('error');
+}
+
+function endScan(state) {
+  scanning = false;
+  if (es) { es.close(); es = null; }
+  btnScan.disabled = false;
+  btnScan.textContent = '▶ Lancer le scan';
+  setStatus(state || 'done');
+  if (state !== 'error') stxt.textContent = 'DONE';
+}
+
+// ── category progress bar ──────────────────────────────────────────────────
+function addCatBar(cat) {
+  if (document.getElementById(`cpf-${cat}`)) return;
+  const col = CAT_COLORS[cat] || '#00ff41';
+  const d = document.createElement('div');
+  d.className = 'cprow';
+  d.innerHTML =
+    `<div class="cplabel">` +
+      `<span style="color:${col}">${cat.toUpperCase()}</span>` +
+      `<span id="cpl-${cat}">—</span>` +
+    `</div>` +
+    `<div class="cpbar"><div class="cpfill" id="cpf-${cat}" style="background:${col}"></div></div>`;
+  document.getElementById('cat-prog').appendChild(d);
+}
+
+// ── proof cards ────────────────────────────────────────────────────────────
+function addProofCard(d) {
+  const grid = document.getElementById('proofs-grid');
+  const np   = document.getElementById('no-proofs');
+  if (np) np.remove();
+
+  const crit = PROOF_CRIT[d.proof_type] || {cls:'med', badge:'bmed', label:'MOYEN'};
+  const col  = CAT_COLORS[d.category]   || '#888';
+  const href = d.file ? `/api/scan/proof/${encodeURIComponent(d.file)}` : '#';
+
+  const card = document.createElement('div');
+  card.className = `pcard ${crit.cls}`;
+  card.innerHTML =
+    `<span class="pcat" style="background:${col}22;color:${col}">${esc(d.category.toUpperCase())}</span>` +
+    `<div class="ptyp">${esc(d.proof_type)}</div>` +
+    `<div class="pevi">${esc((d.evidence||'').slice(0,55))}</div>` +
+    `<span class="pbadge ${crit.badge}">${crit.label}</span>` +
+    `<a class="btn-proof" href="${href}" target="_blank" rel="noopener">Voir preuve complète &rarr;</a>`;
+  grid.appendChild(card);
+
+  const cnt = grid.querySelectorAll('.pcard').length;
+  document.getElementById('proofs-count').textContent = `${cnt} preuve(s)`;
+}
+
+// ── load existing proofs on page load ──────────────────────────────────────
+async function loadProofs() {
+  try {
+    const r = await fetch('/api/scan/proofs');
+    if (!r.ok) return;
+    const list = await r.json();
+    list.forEach(p => addProofCard({
+      category:   p.category,
+      proof_type: p.proof_type,
+      evidence:   `${p.file} — ${p.size_kb} KB`,
+      file:       p.file,
+    }));
+  } catch {}
+}
+
+loadProofs();
+</script>
+</body>
+</html>

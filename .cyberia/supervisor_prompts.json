@@ -1,0 +1,7 @@
+{
+  "priority_prompts": [],
+  "note": "Generation de payloads obfusques ABANDONNEE le 13/07/2026 - prouve inefficace (impasse contre CRS moderne, obfuscation detruit la letalite). Voir cyberia_verite.md. La valeur de CYBERIA est le test multi-vecteurs, pas la generation de payloads.",
+  "generation_active": false,
+  "stagnation_detected": true,
+  "stagnation_at": "2026-07-18T06:00:01.854375"
+}

@@ -1,0 +1,187 @@
+{
+  "narrative": "Ce système d'agents est conçu pour effectuer une recherche approfondie et autonome sur des sujets liés aux systèmes et réseaux. L'architecture suit une approche modulaire en pipeline, où chaque agent a une responsabilité unique et bien définie (SRP). La communication entre agents se fait via un bus d'événements asynchrone (`event_bus`), ce qui permet un découplage total et une extensibilité facile. Le flux de données est le suivant : un agent planificateur reçoit une requête utilisateur, la décompose en sous-tâches de recherche, puis orchestre l'exécution en parallèle ou en séquence selon les dépendances identifiées.\n\nLe choix technique s'est porté sur une architecture orientée événements avec Python asyncio pour gérer efficacement les appels réseau et les traitements I/O-bound (comme les requêtes HTTP vers des API ou des bases de connaissances). Chaque agent expose des méthodes `async` et s'abonne à des types d'événements spécifiques via le `event_bus`. Les résultats intermédiaires sont stockés dans un cache partagé (Redis ou mémoire) pour éviter les redondances et permettre une reprise en cas d'échec. Un agent spécialisé dans l'extraction de données techniques (logs, configurations, schémas réseau) utilise des parsers dédiés (Regex, XML, JSON) pour structurer les informations brutes.\n\nEnfin, un agent de synthèse agrège tous les résultats collectés, les valide et génère un rapport structuré au format Markdown ou JSON. Ce rapport inclut des diagrammes (Mermaid), des références croisées et des recommandations exploitables. L'ensemble du pipeline est orchestré par un agent superviseur qui gère les timeouts, les retries et la journalisation des événements. Le système peut être déployé en conteneur Docker avec des dépendances minimales (httpx, pyyaml, networkx, pydantic).",
+  "schema": {
+    "project_name": "deep_sysnet_researcher",
+    "description": "Système multi-agents autonome pour la recherche approfondie en systèmes et réseaux (architecture, protocoles, sécurité, monitoring)",
+    "agents": [
+      {
+        "name": "PLANNER_AGENT",
+        "file": "agents/planner_agent.py",
+        "class": "PlannerAgent",
+        "responsibilities": [
+          "Analyser la requête utilisateur et la décomposer en sous-tâches de recherche",
+          "Identifier les dépendances entre sous-tâches (séquences vs parallèles)",
+          "Ordonnancer l'exécution des agents via le bus d'événements",
+          "Gérer les timeouts et les stratégies de retry"
+        ],
+        "inputs": [
+          "user_query_string"
+        ],
+        "outputs": [
+          "task_graph_json"
+        ],
+        "dependencies": [
+          "pydantic",
+          "networkx"
+        ],
+        "calls_agents": [
+          "EXTRACTOR_AGENT",
+          "ANALYZER_AGENT",
+          "SYNTHESIZER_AGENT"
+        ],
+        "publishes_events": [
+          "TASK_GRAPH_READY",
+          "PLANNING_FAILED"
+        ],
+        "subscribes_events": [
+          "USER_QUERY_RECEIVED",
+          "TASK_COMPLETED",
+          "TASK_FAILED"
+        ]
+      },
+      {
+        "name": "EXTRACTOR_AGENT",
+        "file": "agents/extractor_agent.py",
+        "class": "ExtractorAgent",
+        "responsibilities": [
+          "Collecter des données techniques depuis des sources externes (API, docs, forums, bases CVE)",
+          "Parser des logs systèmes, configurations réseau, schémas topologiques",
+          "Extraire les entités nommées (IP, ports, protocoles, versions logicielles)",
+          "Normaliser et structurer les données brutes en objets Python typés"
+        ],
+        "inputs": [
+          "task_spec_json",
+          "source_urls_list"
+        ],
+        "outputs": [
+          "extracted_data_json"
+        ],
+        "dependencies": [
+          "httpx",
+          "pyyaml",
+          "beautifulsoup4",
+          "lxml"
+        ],
+        "calls_agents": [],
+        "publishes_events": [
+          "DATA_EXTRACTED",
+          "EXTRACTION_FAILED"
+        ],
+        "subscribes_events": [
+          "TASK_GRAPH_READY",
+          "RETRY_EXTRACTION"
+        ]
+      },
+      {
+        "name": "ANALYZER_AGENT",
+        "file": "agents/analyzer_agent.py",
+        "class": "AnalyzerAgent",
+        "responsibilities": [
+          "Analyser les données extraites pour détecter des patterns (anomalies, vulnérabilités, goulots d'étranglement)",
+          "Corréler les informations entre différentes sources (logs, configs, bases de connaissances)",
+          "Générer des hypothèses techniques avec niveau de confiance",
+          "Produire des indicateurs clés (latence, débit, taux d'erreur, score de sécurité)"
+        ],
+        "inputs": [
+          "extracted_data_json",
+          "analysis_parameters_json"
+        ],
+        "outputs": [
+          "analysis_report_json"
+        ],
+        "dependencies": [
+          "scipy",
+          "pandas",
+          "scikit-learn"
+        ],
+        "calls_agents": [],
+        "publishes_events": [
+          "ANALYSIS_COMPLETED",
+          "ANALYSIS_FAILED"
+        ],
+        "subscribes_events": [
+          "DATA_EXTRACTED",
+          "RETRY_ANALYSIS"
+        ]
+      },
+      {
+        "name": "SYNTHESIZER_AGENT",
+        "file": "agents/synthesizer_agent.py",
+        "class": "SynthesizerAgent",
+        "responsibilities": [
+          "Agréger tous les rapports d'analyse en un document cohérent",
+          "Générer des diagrammes techniques (Mermaid, Graphviz) pour illustrer les topologies et flux",
+          "Rédiger des recommandations exploitables avec priorisation",
+          "Valider la complétude et la cohérence du rapport final"
+        ],
+        "inputs": [
+          "analysis_report_json",
+          "task_graph_json"
+        ],
+        "outputs": [
+          "final_report_markdown"
+        ],
+        "dependencies": [
+          "jinja2",
+          "markdown",
+          "mermaid"
+        ],
+        "calls_agents": [],
+        "publishes_events": [
+          "REPORT_READY",
+          "SYNTHESIS_FAILED"
+        ],
+        "subscribes_events": [
+          "ANALYSIS_COMPLETED",
+          "TASK_GRAPH_READY"
+        ]
+      },
+      {
+        "name": "SUPERVISOR_AGENT",
+        "file": "agents/supervisor_agent.py",
+        "class": "SupervisorAgent",
+        "responsibilities": [
+          "Recevoir et valider la requête initiale de l'utilisateur",
+          "Surveiller l'état de santé de tous les agents (heartbeat, files d'attente)",
+          "Gérer les reprises après échec et les escalades",
+          "Journaliser tous les événements dans un format structuré (ELK compatible)"
+        ],
+        "inputs": [
+          "user_query_string",
+          "system_health_metrics"
+        ],
+        "outputs": [
+          "final_report_markdown",
+          "execution_log_json"
+        ],
+        "dependencies": [
+          "structlog",
+          "prometheus_client"
+        ],
+        "calls_agents": [
+          "PLANNER_AGENT"
+        ],
+        "publishes_events": [
+          "USER_QUERY_RECEIVED",
+          "SYSTEM_ERROR",
+          "SHUTDOWN"
+        ],
+        "subscribes_events": [
+          "REPORT_READY",
+          "PLANNING_FAILED",
+          "EXTRACTION_FAILED",
+          "ANALYSIS_FAILED",
+          "SYNTHESIS_FAILED"
+        ]
+      }
+    ],
+    "pipeline": [
+      "SUPERVISOR_AGENT",
+      "PLANNER_AGENT",
+      "EXTRACTOR_AGENT",
+      "ANALYZER_AGENT",
+      "SYNTHESIZER_AGENT"
+    ],
+    "estimated_files": 8
+  }
+}

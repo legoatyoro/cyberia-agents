@@ -1,0 +1,11 @@
+=== MÉMOIRE CYBERIA ===
+Cette mémoire a été assainie le 13/07/2026.
+Les anciennes notes (génération d'obfusqués, encodages exotiques, chaînages payloads)
+sont ABANDONNÉES — prouvées inefficaces.
+
+RÉFÉRENCE UNIQUE DE VÉRITÉ : /root/cyberia/.cyberia/cyberia_verite.md
+Ce fichier fait autorité. En cas de doute, le consulter.
+
+Résumé : CYBERIA = scanner défensif multi-vecteurs. La valeur est de tester tous les
+vecteurs (headers, query, cookies), pas de générer des payloads magiques.
+L'obfuscation est une impasse prouvée. On capitalise du renseignement, pas des payloads.
