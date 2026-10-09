@@ -6,3 +6,9 @@ __pycache__/
 *.db-journal
 venv/
 .cyberia/*.db
+
+# --- Correctif 2026-10-09 : gros exports regenerables (bloquaient le push) ---
+data_exploitable/tentatives_vecteur.json
+data_exploitable/*.json
+*.pgdump
+backups_db/
