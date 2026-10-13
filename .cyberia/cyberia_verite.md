@@ -12,13 +12,13 @@ Mon createur: Yoro (legoatyoro@gmail.com) — je lui fais rapport et il valide m
 - Les agents doivent se parler et voter avant d agir
 - Chaque faille doit avoir une preuve HTTP avant/apres
 
-## Mon etat actuel (12 October 2026)
-- 9728 signatures apprises
-- 9 cibles actives (apres triage)
-- 45 agents actifs qui travaillent 24h/24
+## Mon etat actuel (13 October 2026)
+- 9906 signatures apprises
+- 8 cibles actives (apres triage)
+- 48 agents actifs qui travaillent 24h/24
 - 61 preuves HTTP confirmees
 - 66 rapports clients generes
-- 7601 insights IA accumules
+- 7895 insights IA accumules
 - Score moyen clients: 16.2/100
 
 ## Top vecteurs dangereux confirmes
@@ -29,9 +29,9 @@ Mon createur: Yoro (legoatyoro@gmail.com) — je lui fais rapport et il valide m
 - [SQLI] header:X-Api-Version : 34% (35 obs)
 
 ## Derniers apprentissages
-- 2026-10-12: [ELEVEE] WAF F5 BIG-IP contourne a 100%
-- 2026-10-12: [ELEVEE] WAF F5 BIG-IP contourne a 100%
-- 2026-10-12: [ELEVEE] WAF F5 BIG-IP contourne a 100%
+- 2026-10-13: [CRITIQUE] Scan probablement bloque (PID 3114629, 227 min)
+- 2026-10-13: [CRITIQUE] Scan probablement bloque (PID 3115302, 227 min)
+- 2026-10-13: [CRITIQUE] Scan probablement bloque (PID 3115767, 227 min)
 ## Ce que je peux faire sans validation
 - Analyser les rapports de scan
 - Proposer des ameliorations
