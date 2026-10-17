@@ -1,0 +1,7 @@
+{"ts": "2026-10-17T14:20:29", "url": "https://www.fnac.com/", "autorise": false, "motif": "base injoignable (OperationalError) : refus par défaut"}
+{"ts": "2026-10-17T14:20:29", "url": "http://169.254.169.254/latest/meta-data/", "autorise": false, "motif": "blocklist (169.254.169.254)"}
+{"ts": "2026-10-17T14:20:29", "url": "https://inconnu-sans-preuve.example/", "autorise": false, "motif": "base injoignable (OperationalError) : refus par défaut"}
+{"ts": "2026-10-17T14:20:30", "url": "https://www.fnac.com/", "autorise": false, "motif": "base injoignable (OperationalError) : refus par défaut"}
+{"ts": "2026-10-17T14:21:13", "url": "https://www.fnac.com/", "autorise": false, "motif": "aucun consentement en base"}
+{"ts": "2026-10-17T14:21:13", "url": "http://169.254.169.254/latest/meta-data/", "autorise": false, "motif": "blocklist (169.254.169.254)"}
+{"ts": "2026-10-17T14:21:13", "url": "https://inconnu-sans-preuve.example/", "autorise": false, "motif": "aucun consentement en base"}

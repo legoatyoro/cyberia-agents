@@ -1,0 +1,17 @@
+# RECO FC — URLs autorisees pour la surveillance de derive (surveillance-boucle.sh).
+#
+# REGLE : n'inscrire ici que des adresses dont le proprietaire est responsable
+# ou pour lesquelles une autorisation ecrite existe. Chaque passe est journalisee
+# (surveillance-boucle.log + drift-surveillance.log). Une ligne = une URL.
+# Les lignes vides et tout ce qui suit un # sont ignores.
+
+http://127.0.0.1:8077/
+http://127.0.0.1:8098/
+http://127.0.0.1:8099/
+
+# 17/10/2026 — banc d'essai etiquete (pages dont on connait la verite par construction)
+http://127.0.0.1:8100/
+
+# 17/10/2026 — autorisation declaree par l'operateur : « je t'envoie l'URL autorisee »
+# Cible cliente : capture passive de la page publique uniquement (aucun test intrusif).
+https://mytabacticket.com/
