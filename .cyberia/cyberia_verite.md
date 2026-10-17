@@ -12,26 +12,26 @@ Mon createur: Yoro (legoatyoro@gmail.com) — je lui fais rapport et il valide m
 - Les agents doivent se parler et voter avant d agir
 - Chaque faille doit avoir une preuve HTTP avant/apres
 
-## Mon etat actuel (16 October 2026)
-- 9950 signatures apprises
+## Mon etat actuel (17 October 2026)
+- 9966 signatures apprises
 - 6 cibles actives (apres triage)
 - 52 agents actifs qui travaillent 24h/24
 - 61 preuves HTTP confirmees
 - 66 rapports clients generes
-- 9373 insights IA accumules
+- 10374 insights IA accumules
 - Score moyen clients: 16.2/100
 
 ## Top vecteurs dangereux confirmes
-- [XXE] cookie:location : 100% (16 obs)
-- [XSS] body_form:votre_message : 73% (11 obs)
+- [XXE] cookie:location : 100% (19 obs)
+- [SSRF] cookie:location : 76% (25 obs)
 - [XSS] body_form:votre_tlphone : 73% (11 obs)
 - [XSS] body_form:votre_email : 73% (11 obs)
-- [SSRF] cookie:location : 73% (22 obs)
+- [XSS] body_form:votre_message : 73% (11 obs)
 
 ## Derniers apprentissages
-- 2026-10-16: [CRITIQUE] Nouveau vecteur a 100%% de dangerosité
-- 2026-10-16: [CRITIQUE] Nouveau vecteur a 100%% de dangerosité
-- 2026-10-16: [CRITIQUE] Nouveau vecteur a 100%% de dangerosité
+- 2026-10-17: [CRITIQUE] Nouveau vecteur a 100%% de dangerosité
+- 2026-10-17: [CRITIQUE] Nouveau vecteur a 100%% de dangerosité
+- 2026-10-17: [CRITIQUE] Nouveau vecteur a 100%% de dangerosité
 ## Ce que je peux faire sans validation
 - Analyser les rapports de scan
 - Proposer des ameliorations
